@@ -1,0 +1,27 @@
+/*
+*Enums: They can be used to create custom types with a finite set of constant values to improve readability. 
+*They need a minimum of one member and can have a maximum of 256. 
+*They can be explicitly converted to/from integers. 
+*The options are represented by unsigned integer values starting from 0. 
+*The default value is the first member. //@imp
+*/
+
+/*
+*The operators || and && apply the common short-circuiting rules. 
+*This means that in the expression f(x) || g(y), if f(x) evaluates to true, 
+*g(y) will not be evaluated even if it may have side-effects. //@imp
+*/
+
+/*
+*Transfer: If that execution runs out of gas or fails in any way, 
+*the Ether transfer will be reverted and the current contract will stop with an exception.
+*Send: The send function is the low-level counterpart of transfer. 
+*If the execution fails then send only returns false and does not revert unlike transfer. 
+*/
+
+/*
+*memory: whose lifetime is limited to an external function call.
+*storage: whose lifetime is limited to the lifetime of a contract and the location where the state variables are stored.
+*calldata: which is a non-modifiable, non-persistent area where function arguments are stored and behaves mostly like memory. 
+*It is required for parameters of external functions but can also be used for other variables.
+*/
