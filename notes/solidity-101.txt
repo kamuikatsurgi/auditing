@@ -1,27 +1,73 @@
 /*
-*Enums: They can be used to create custom types with a finite set of constant values to improve readability. 
-*They need a minimum of one member and can have a maximum of 256. 
-*They can be explicitly converted to/from integers. 
-*The options are represented by unsigned integer values starting from 0. 
-*The default value is the first member. //@imp
+Enums: They can be used to create custom types with a finite set of constant values to improve readability. 
+They need a minimum of one member and can have a maximum of 256. 
+They can be explicitly converted to/from integers. 
+The options are represented by unsigned integer values starting from 0. 
+The default value is the first member. //@imp
 */
 
 /*
-*The operators || and && apply the common short-circuiting rules. 
-*This means that in the expression f(x) || g(y), if f(x) evaluates to true, 
-*g(y) will not be evaluated even if it may have side-effects. //@imp
+The operators || and && apply the common short-circuiting rules. 
+This means that in the expression f(x) || g(y), if f(x) evaluates to true, 
+g(y) will not be evaluated even if it may have side-effects. //@imp
 */
 
 /*
-*Transfer: If that execution runs out of gas or fails in any way, 
-*the Ether transfer will be reverted and the current contract will stop with an exception.
-*Send: The send function is the low-level counterpart of transfer. 
-*If the execution fails then send only returns false and does not revert unlike transfer. 
+Transfer: If that execution runs out of gas or fails in any way, 
+the Ether transfer will be reverted and the current contract will stop with an exception.
+Send: The send function is the low-level counterpart of transfer. 
+If the execution fails then send only returns false and does not revert unlike transfer. 
 */
 
 /*
-*memory: whose lifetime is limited to an external function call.
-*storage: whose lifetime is limited to the lifetime of a contract and the location where the state variables are stored.
-*calldata: which is a non-modifiable, non-persistent area where function arguments are stored and behaves mostly like memory. 
-*It is required for parameters of external functions but can also be used for other variables.
+memory: whose lifetime is limited to an external function call.
+storage: whose lifetime is limited to the lifetime of a contract and the location where the state variables are stored.
+calldata: which is a non-modifiable, non-persistent area where function arguments are stored and behaves mostly like memory. 
+It is required for parameters of external functions but can also be used for other variables.
 */
+
+/*
+Solidity supports different kinds of catch blocks depending on the type of error:
+
+catch Error(string memory reason) { ... }: 
+This catch clause is executed if the error was caused by revert("reasonString") or 
+require(false, "reasonString") (or an internal error that causes such an exception).
+
+catch Panic(uint errorCode) { ... }: 
+If the error was caused by a panic, i.e. by a failing assert, division by zero, invalid array access, 
+arithmetic overflow and others, this catch clause will be run.
+
+catch (bytes memory lowLevelData) { ... }: 
+This clause is executed if the error signature does not match any other clause, 
+if there was an error while decoding the error message, or if no error data was provided with the exception. 
+The declared variable provides access to the low-level error data in that case.
+
+catch { ... }: If you are not interested in the error data, you can just use catch { ... } 
+(even as the only catch clause) instead of the previous clause.
+*/
+
+/*
+The assert function creates an error of type Panic(uint256). Assert should only be used to test for internal errors, and to check invariants. Properly functioning code should never create a Panic, not even on invalid external input. 
+
+A Panic exception is generated in the following situations. The error code supplied with the error data indicates the kind of panic:
+
+0x01: If you call assert with an argument that evaluates to false.
+
+0x11: If an arithmetic operation results in underflow or overflow outside of an unchecked { ... } block.
+
+0x12; If you divide or modulo by zero (e.g. 5 / 0 or 23 % 0).
+
+0x21: If you convert a value that is too big or negative into an enum type.
+
+0x22: If you access a storage byte array that is incorrectly encoded.
+
+0x31: If you call .pop() on an empty array.
+
+0x32: If you access an array, bytesN or an array slice at an out-of-bounds or negative index (i.e. x[i] where i >= x.length or i < 0).
+
+0x41: If you allocate too much memory or create an array that is too large.
+
+0x51: If you call a zero-initialized variable of internal function type.
+*/
+
+//@imp You can optionally provide a message string for require, but not for assert.
