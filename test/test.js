@@ -28,7 +28,6 @@ describe("Exploits", function () {
     const attackContract = await ethers.getContractFactory("AttackContract");
     const Attack = await attackContract.deploy(HackMe.target);
     await Attack.attack();
-
     expect(await HackMe.owner()).to.equal(Attack.target);
   });
 

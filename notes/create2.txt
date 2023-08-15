@@ -1,0 +1,5 @@
+CREATE2 opcode usage potential issues/attack vectors:
+
+- deployment griefing by front-running with same "salt" param
+- selfdestruct opcode leads to a "metamorphic" contract
+- not checking if the returned value is not the zero address (failed deployment)

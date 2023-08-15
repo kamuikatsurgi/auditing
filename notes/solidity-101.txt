@@ -3,20 +3,20 @@ Enums: They can be used to create custom types with a finite set of constant val
 They need a minimum of one member and can have a maximum of 256. 
 They can be explicitly converted to/from integers. 
 The options are represented by unsigned integer values starting from 0. 
-The default value is the first member. //@imp
+- The default value is the first member. //@imp
 */
 
 /*
 The operators || and && apply the common short-circuiting rules. 
 This means that in the expression f(x) || g(y), if f(x) evaluates to true, 
-g(y) will not be evaluated even if it may have side-effects. //@imp
+- g(y) will not be evaluated even if it may have side-effects. //@imp
 */
 
 /*
 Transfer: If that execution runs out of gas or fails in any way, 
 the Ether transfer will be reverted and the current contract will stop with an exception.
 Send: The send function is the low-level counterpart of transfer. 
-If the execution fails then send only returns false and does not revert unlike transfer. 
+- If the execution fails then send only returns false and does not revert unlike transfer. 
 */
 
 /*
@@ -70,4 +70,4 @@ A Panic exception is generated in the following situations. The error code suppl
 0x51: If you call a zero-initialized variable of internal function type.
 */
 
-//@imp You can optionally provide a message string for require, but not for assert.
+- @imp You can optionally provide a message string for require, but not for assert.
